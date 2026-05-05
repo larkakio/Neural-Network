@@ -1,0 +1,6 @@
+# Monorepo root
+.DS_Store
+**/.DS_Store
+
+# Keep local env out of git
+web/.env.local

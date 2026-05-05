@@ -1,0 +1,223 @@
+@import "tailwindcss";
+
+:root {
+  --nn-bg: #03040a;
+  --nn-cyan: #00f0ff;
+  --nn-magenta: #ff00aa;
+  --nn-violet: #b026ff;
+  --nn-warn: #ffb020;
+  --nn-muted: #7a8aa3;
+  --nn-grid: rgba(0, 240, 255, 0.06);
+}
+
+@theme inline {
+  --font-sans: var(--font-orbitron), system-ui, sans-serif;
+  --font-mono: var(--font-ibm-plex), ui-monospace, monospace;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--nn-bg);
+  color: #e8f0ff;
+  font-family: var(--font-orbitron), system-ui, sans-serif;
+}
+
+.nn-mono {
+  font-family: var(--font-ibm-plex), ui-monospace, monospace;
+}
+
+.safe-pt {
+  padding-top: max(0.5rem, env(safe-area-inset-top));
+}
+
+.nn-title {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow:
+    0.06em 0 0 rgba(255, 0, 170, 0.35),
+    -0.05em 0 0 rgba(0, 240, 255, 0.35);
+}
+
+.nn-hud {
+  background: linear-gradient(
+    180deg,
+    rgba(3, 4, 10, 0.95) 0%,
+    rgba(3, 4, 10, 0.65) 100%
+  );
+}
+
+.nn-panel {
+  background: linear-gradient(
+    145deg,
+    rgba(176, 38, 255, 0.08),
+    rgba(0, 240, 255, 0.04)
+  );
+  backdrop-filter: blur(10px);
+}
+
+.nn-slant {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);
+}
+
+.nn-grid {
+  background-image:
+    linear-gradient(var(--nn-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--nn-grid) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.nn-cell {
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+.nn-cell-wired {
+  box-shadow:
+    0 0 12px rgba(0, 240, 255, 0.35),
+    inset 0 0 20px rgba(255, 0, 170, 0.08);
+  border-color: rgba(0, 240, 255, 0.45) !important;
+}
+
+.nn-cell-source {
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.55);
+}
+
+.nn-cell-target {
+  box-shadow: 0 0 14px rgba(255, 0, 170, 0.35);
+}
+
+.nn-cell-firewall {
+  animation: nn-flicker 4s ease-in-out infinite;
+}
+
+.nn-pulse {
+  animation: nn-pulse 1.8s ease-in-out infinite;
+}
+
+.nn-wire-glow {
+  filter: drop-shadow(0 0 4px rgba(0, 240, 255, 0.8));
+}
+
+.nn-btn-primary {
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 240, 255, 0.55);
+  background: linear-gradient(120deg, rgba(0, 240, 255, 0.25), rgba(176, 38, 255, 0.2));
+  color: #f0fbff;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+}
+
+.nn-btn-primary:disabled {
+  opacity: 0.45;
+}
+
+.nn-btn-secondary {
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 0, 170, 0.35);
+  background: rgba(255, 0, 170, 0.08);
+  color: #ffe8f5;
+  font-weight: 600;
+}
+
+.nn-btn-ghost {
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--nn-muted);
+}
+
+.nn-chip {
+  min-width: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.35rem 0.75rem;
+  font-family: var(--font-ibm-plex), monospace;
+  font-size: 0.75rem;
+  color: var(--nn-muted);
+}
+
+.nn-chip-active {
+  border-color: var(--nn-cyan);
+  color: var(--nn-cyan);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+}
+
+.nn-modal {
+  animation: nn-fade 0.25s ease-out;
+}
+
+@keyframes nn-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@keyframes nn-flicker {
+  0%,
+  92%,
+  100% {
+    opacity: 1;
+  }
+  94% {
+    opacity: 0.65;
+  }
+  96% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes nn-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-pulse,
+  .nn-cell-firewall,
+  .nn-modal {
+    animation: none !important;
+  }
+}
+
+/* Drifting radial backdrop */
+.nn-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(176, 38, 255, 0.22), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 80%, rgba(0, 240, 255, 0.12), transparent 50%),
+    radial-gradient(ellipse 100% 100% at 50% 100%, rgba(3, 4, 10, 1), rgba(3, 4, 10, 0.92));
+  animation: nn-drift 28s ease-in-out infinite alternate;
+}
+
+@keyframes nn-drift {
+  from {
+    filter: hue-rotate(0deg);
+    transform: scale(1);
+  }
+  to {
+    filter: hue-rotate(12deg);
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-backdrop {
+    animation: none;
+  }
+}

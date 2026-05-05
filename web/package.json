@@ -1,0 +1,38 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@base-org/account": "^2.5.5",
+    "@coinbase/wallet-sdk": "^4.3.7",
+    "@metamask/connect-evm": "^1.0.0",
+    "@tanstack/react-query": "^5.100.9",
+    "@wagmi/connectors": "^8.0.9",
+    "@walletconnect/ethereum-provider": "^2.23.9",
+    "accounts": "^0.8.10",
+    "next": "15.5.14",
+    "ox": "^0.14.20",
+    "porto": "^0.2.37",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "viem": "^2.48.8",
+    "wagmi": "^3.6.9"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.14",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
