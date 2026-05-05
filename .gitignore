@@ -4,3 +4,4 @@
 
 # Keep local env out of git
 web/.env.local
+!web/.env.example
